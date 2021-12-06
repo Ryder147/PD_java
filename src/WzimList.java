@@ -256,7 +256,32 @@ public class WzimList<E> implements java.util.List<E>
 
     @Override
     public boolean retainAll(Collection c) {
-        return false;
+         if(tab.length!=0){
+        E[] bufor= (E[]) c.toArray();
+        int licznik=0;
+        for (int i = 0; i < bufor.length ; i++) {
+            for (E h:tab  ) {
+                if(h.equals(bufor[i])){
+                    licznik+=1;
+                }
+            }
+        }
+        E[] proxy=Arrays.copyOf(tab,licznik);
+        int k=0;
+        for (E i:tab) {
+            for (E j:bufor  ) {
+                if(i.equals(j)){
+                    proxy[k]=i;
+                    k+=1;
+                }
+            }
+
+        }
+        tab=proxy;
+        size= tab.length;
+        return true;
+         }
+         return false;
     }
 
     @Override
@@ -264,8 +289,10 @@ public class WzimList<E> implements java.util.List<E>
         E[] bufor= (E[]) c.toArray();
         int licznik=0;
         for (int i = 0; i < bufor.length ; i++) {
-            if(czyZawiera(tab,bufor[i])){
-                licznik+=1;
+            for (E h:tab  ) {
+                if(h.equals(bufor[i])){
+                    licznik+=1;
+                }
             }
         }
         System.out.println(licznik);
@@ -285,6 +312,7 @@ public class WzimList<E> implements java.util.List<E>
                 }
             }
             tab=proxy;
+            size=tab.length;
             return true;
         }
         return false;
@@ -293,12 +321,31 @@ public class WzimList<E> implements java.util.List<E>
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+         E[] bufor= (E[]) c.toArray();
+         int licznik=0;
+         for (E i: bufor  ) {
+            for (E j:tab ) {
+                if(i.equals(j)){
+                    licznik+=1;
+                    break;
+                }
+            }
+        }
+         if(licznik==bufor.length){
+             return true;
+         }
+         return false;
+
     }
 
     @Override
     public Object[] toArray(Object[] a) {
-        return new Object[0];
+        if(a.length==tab.length){
+        for (int i = 0; i <tab.length ; i++) {
+            a[i]=tab[i];
+        }
+        }
+        return a;
     }
 
     public static void main(String[] args) {
@@ -324,6 +371,7 @@ public class WzimList<E> implements java.util.List<E>
         List<String> lista1=new ArrayList<>();
         lista1.add("Elo");
         lista1.add("Mordo");
+        lista1.add("Kocyk");
 /*
         list.addAll(2,lista1);
         show(list.toArray());
@@ -335,8 +383,10 @@ public class WzimList<E> implements java.util.List<E>
         //list.remove(2);
 
  */
-        show(list.toArray());
-        list.removeAll(lista1);
+        //String[] tab1=list.toArray(new String[list.size()]);
+        //show(tab1);
+        System.out.println("asdasdasdasdasdasd");
+        System.out.println(list.retainAll(lista1));
         System.out.println("---------");
         show(list.toArray());
 
