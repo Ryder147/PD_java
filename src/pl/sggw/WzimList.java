@@ -1,6 +1,11 @@
+package pl.sggw;
 
+import java.util.Arrays;
 import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 
 public class WzimList<E> implements java.util.List<E>
@@ -244,7 +249,7 @@ public class WzimList<E> implements java.util.List<E>
     @Override
     public java.util.List subList(int fromIndex, int toIndex) {
         if(fromIndex<tab.length){
-            List<E> bufor=new ArrayList<>();
+            List<E> bufor=new WzimList<>();
             for (int i = fromIndex; i <toIndex && i<tab.length ; i++) {
                 bufor.add(tab[i]);
             }
@@ -355,7 +360,7 @@ public class WzimList<E> implements java.util.List<E>
         list.add("Elo");
         list.add("Mordo");
         list.add("Siema");
-        list.add("Mordo");
+        list.add("Artek");
         list.add("Kocyk");
         list.add("Elo");
 
@@ -368,7 +373,10 @@ public class WzimList<E> implements java.util.List<E>
 
 
 
-        List<String> lista1=new ArrayList<>();
+        List<String> lista1=new WzimList<>();
+        lista1=list.subList(1,5);
+        show(lista1.toArray());
+
         lista1.add("Elo");
         lista1.add("Mordo");
         lista1.add("Kocyk");
