@@ -1,23 +1,38 @@
 package pl.sggw;
 
+
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class WzimSet<T> implements Set<T> {
+
+    List<T> list=new WzimList<>();
+
+    public WzimSet(){}
+
+    public static void show(Object[] tab){
+        for (Object i:tab) {
+            System.out.println(i);
+
+        }
+    }
+
+
     @Override
     public int size() {
-        return 0;
+        return list.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return list.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        return list.contains(o);
     }
 
     @Override
@@ -27,31 +42,55 @@ public class WzimSet<T> implements Set<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return list.toArray();
     }
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        return list.toArray(a);
     }
 
     @Override
     public boolean add(T t) {
+        if(!(list.contains(t))){
+            list.add(t);
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean remove(Object o) {
+        if(list.remove(o)){
+            list.remove(o);
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
+        if(list.containsAll(c)){
+            return true;
+        }
         return false;
     }
 
+
+
     @Override
     public boolean addAll(Collection<? extends T> c) {
+        T[] bufor= (T[]) c.toArray();
+        int licznik=0;
+        for (T i:bufor          ) {
+            if(!(list.contains(i))){
+                list.add(i);
+                licznik+=1;
+            }
+        }
+        if(licznik!=0){
+        return true;
+        }
         return false;
     }
 
@@ -71,6 +110,21 @@ public class WzimSet<T> implements Set<T> {
     }
 
     public static void main(String[] args) {
+        Set<String> set=new WzimSet<>();
+        set.add("Elo");
+        set.add("Mordo");
 
+        show(set.toArray());
+        System.out.println(set.add("Elo0")+"----\n");
+        System.out.println(set.add("Elooo"));
+        show(set.toArray());
+
+
+        Set<String> nowy=new WzimSet<>();
+        nowy.add("Elo0");
+        nowy.add("Elooo");
+        //nowy.add("Arek");
+        System.out.println(set.addAll(nowy));
+        show(set.toArray());
     }
 }

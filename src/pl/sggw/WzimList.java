@@ -284,7 +284,8 @@ public class WzimList<E> implements java.util.List<E>
         }
         tab=proxy;
         size= tab.length;
-        return true;
+        if(licznik!=0){
+        return true;}
          }
          return false;
     }
@@ -345,11 +346,11 @@ public class WzimList<E> implements java.util.List<E>
 
     @Override
     public Object[] toArray(Object[] a) {
-        if(a.length==tab.length){
-        for (int i = 0; i <tab.length ; i++) {
+
+        for (int i = 0; i <tab.length && i<a.length ; i++) {
             a[i]=tab[i];
         }
-        }
+
         return a;
     }
 
@@ -391,9 +392,11 @@ public class WzimList<E> implements java.util.List<E>
         //list.remove(2);
 
  */
-        //String[] tab1=list.toArray(new String[list.size()]);
-        //show(tab1);
-        System.out.println("asdasdasdasdasdasd");
+
+        System.out.println("sdfsdfsdfdsfsdfsd\n");
+        String[] tab1=list.toArray(new String[tab.length]);
+        show(tab1);
+        System.out.println("\nasdasdasdasdasdasd");
         System.out.println(list.retainAll(lista1));
         System.out.println("---------");
         show(list.toArray());
