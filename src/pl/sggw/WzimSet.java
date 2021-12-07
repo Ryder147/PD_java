@@ -36,7 +36,8 @@ public class WzimSet<T> implements Set<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<T> iterator()
+    {
         return null;
     }
 
@@ -96,22 +97,34 @@ public class WzimSet<T> implements Set<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        if(list.retainAll(c)){
+            list.retainAll(c);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        if(list.removeAll(c)){
+            list.removeAll(c);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public void clear() {
+        list.clear();
 
     }
 
     public static void main(String[] args) {
         Set<String> set=new WzimSet<>();
         set.add("Elo");
+        set.add("Arek");
         set.add("Mordo");
 
         show(set.toArray());
@@ -121,10 +134,15 @@ public class WzimSet<T> implements Set<T> {
 
 
         Set<String> nowy=new WzimSet<>();
-        nowy.add("Elo0");
+        nowy.add("Elo");
         nowy.add("Elooo");
         //nowy.add("Arek");
-        System.out.println(set.addAll(nowy));
+        //System.out.println(set.addAll(nowy));
+        System.out.println("asdasdasdasdasdasd");
+        set.removeAll(nowy);
+
         show(set.toArray());
+
+        System.out.println(set.size());
     }
 }

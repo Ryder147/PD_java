@@ -301,7 +301,7 @@ public class WzimList<E> implements java.util.List<E>
                 }
             }
         }
-        System.out.println(licznik);
+
         if(licznik>0){
             E[] proxy=Arrays.copyOf(tab,tab.length-licznik);
             int k=0;
