@@ -121,28 +121,4 @@ public class WzimSet<T> implements Set<T> {
 
     }
 
-    public static void main(String[] args) {
-        Set<String> set=new WzimSet<>();
-        set.add("Elo");
-        set.add("Arek");
-        set.add("Mordo");
-
-        show(set.toArray());
-        System.out.println(set.add("Elo0")+"----\n");
-        System.out.println(set.add("Elooo"));
-        show(set.toArray());
-
-
-        Set<String> nowy=new WzimSet<>();
-        nowy.add("Elo");
-        nowy.add("Elooo");
-        //nowy.add("Arek");
-        //System.out.println(set.addAll(nowy));
-        System.out.println("asdasdasdasdasdasd");
-        set.removeAll(nowy);
-
-        show(set.toArray());
-
-        System.out.println(set.size());
-    }
 }
